@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1056879497102",
+    "project_id": "indra-51ac6",
+    "storage_bucket": "indra-51ac6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056879497102:android:feb7cc817b3970d8185edf",
+        "android_client_info": {
+          "package_name": "com.example.version1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeQCwkoerapK_gQT-aEQ4iw9mzYV5PrYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

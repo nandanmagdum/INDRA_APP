@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AreaCalculator extends StatefulWidget {
@@ -18,74 +19,80 @@ class _AreaCalculatorState extends State<AreaCalculator> {
     var sapling_num = 0;
     final TextEditingController lengthController = TextEditingController();
     final TextEditingController breadthController = TextEditingController();
-    return Column(
-      children: [
-        Expanded(
-            child: Container(
-          // height: MediaQuery.of(context).size.height,
-          // width: MediaQuery.of(context).size.width,
-          height: screenHeight,
-          width: screenWidth,
-          // color: Colors.green,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: screenHeight * 0.01,
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        child: Column(
+          children: [
+            Expanded(
+                child: Container(
+              // height: MediaQuery.of(context).size.height,
+              // width: MediaQuery.of(context).size.width,
+              height: screenHeight,
+              width: screenWidth,
+              // color: Colors.green,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  Text(
+                    "Area Calculator",
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  customTextField(
+                      kcontroller: lengthController, hintText: "Length"),
+                  customTextField(
+                      kcontroller: breadthController, hintText: "Breadth"),
+                  Center(
+                      child: ElevatedButton(
+                    onPressed: () {
+                      print(
+                          "${lengthController.text}, ${breadthController.text}");
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text("Calculate", style: TextStyle(fontSize: 20)),
+                    ),
+                  )),
+                  SizedBox(
+                    height: screenHeight * 0.05,
+                  ),
+                  Divider(),
+                  SizedBox(
+                    height: screenHeight * 0.05,
+                  ),
+                  Text(
+                    "Area: ${area = 0.0} sq m",
+                    style: smallbody(),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  Text(
+                    "Number of Alley: ${alley_num = 0}",
+                    style: smallbody(),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                  Text(
+                    "Number of Sapling: ${sapling_num = 0} ",
+                    style: smallbody(),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.01,
+                  ),
+                ],
               ),
-              Text(
-                "Area Calculator",
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: screenHeight * 0.01,
-              ),
-              customTextField(
-                  kcontroller: lengthController, hintText: "Length"),
-              customTextField(
-                  kcontroller: breadthController, hintText: "Breadth"),
-              Center(
-                  child: ElevatedButton(
-                onPressed: () {
-                  print("${lengthController.text}, ${breadthController.text}");
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text("Calculate", style: TextStyle(fontSize: 20)),
-                ),
-              )),
-              SizedBox(
-                height: screenHeight * 0.05,
-              ),
-              Divider(),
-              SizedBox(
-                height: screenHeight * 0.05,
-              ),
-              Text(
-                "Area: ${area = 0.0} sq m",
-                style: smallbody(),
-              ),
-              SizedBox(
-                height: screenHeight * 0.01,
-              ),
-              Text(
-                "Number of Alley: ${alley_num = 0}",
-                style: smallbody(),
-              ),
-              SizedBox(
-                height: screenHeight * 0.01,
-              ),
-              Text(
-                "Number of Sapling: ${sapling_num = 0} ",
-                style: smallbody(),
-              ),
-              SizedBox(
-                height: screenHeight * 0.01,
-              ),
-            ],
-          ),
-        )),
-      ],
+            )),
+          ],
+        ),
+      ),
     );
   }
 
