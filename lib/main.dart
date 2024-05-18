@@ -2,9 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:version1/features/MainScreen.dart/main_screen.dart';
-import 'package:version1/features/auth/screens/enter_otp.dart';
-import 'package:version1/features/auth/screens/enter_user_details.dart';
 import 'package:version1/features/auth/splash_screen.dart';
 import 'package:version1/firebase_options.dart';
 

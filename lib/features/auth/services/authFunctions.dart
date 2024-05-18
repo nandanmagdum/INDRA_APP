@@ -50,6 +50,7 @@ class AuthFunctions {
         SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();
         sharedPreferences.setString("token", uid);
+        sharedPreferences.setString("jwt", response.data);
         return true;
       }
     } catch (e) {
@@ -69,14 +70,14 @@ class AuthFunctions {
       await FirebaseAuth.instance.verifyPhoneNumber(
           verificationCompleted: (PhoneAuthCredential credential) {},
           verificationFailed: (FirebaseAuthException e) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               backgroundColor: Colors.white,
               behavior: SnackBarBehavior.floating,
               content: ListTile(
                 leading: Icon(Icons.error, color: Colors.red),
                 title: Text(
-                  'Please enter valid phone number',
-                ),
+                    // 'Please enter valid phone number',
+                    e.message.toString()),
               ),
             ));
           },

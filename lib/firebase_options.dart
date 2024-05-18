@@ -59,4 +59,5 @@ class DefaultFirebaseOptions {
     projectId: 'indra-51ac6',
     storageBucket: 'indra-51ac6.appspot.com',
   );
+
 }
