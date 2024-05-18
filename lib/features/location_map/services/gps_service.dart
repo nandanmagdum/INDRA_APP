@@ -9,7 +9,7 @@ class GPSservice {
     print("getGPSLocation fucntion is called");
     try {
       Response response = await dio.get(gps_url);
-      print("Response : ${response.data}");
+      // print("Response : ${response.data}");
       return response.data;
     } catch (e) {
       print(e.toString());

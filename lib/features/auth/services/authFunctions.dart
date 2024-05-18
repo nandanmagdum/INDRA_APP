@@ -14,12 +14,17 @@ class AuthFunctions {
 
   logOut({required BuildContext context}) async {
     await firebaseAuth.signOut();
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.remove("jwt");
+    preferences.remove("token");
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (context) => const WelcomeScreen()));
   }
 
   Future<void> createUser(UserModel user) async {
     try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
       Response response = await dio.post("${base_url}auth/create", data: {
         "name": user.name,
         "phone": user.phone,
@@ -33,6 +38,9 @@ class AuthFunctions {
           "state": user.state
         }
       });
+
+      sharedPreferences.setString("jwt", response.data);
+      sharedPreferences.setString("token", user.uid!);
     } catch (e) {
       print("Error ouccured while creating the user: ${e.toString()}");
       throw Exception(e.toString());
