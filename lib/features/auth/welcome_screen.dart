@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
 
-import "../../utils/button_style.dart";
 import "screens/enter_phone.dart";
 
 class WelcomeScreen extends StatelessWidget {
@@ -32,19 +31,27 @@ class WelcomeScreen extends StatelessWidget {
                 //     child: const Center(child: Text("Login"))),
                 SizedBox(height: 10.h),
                 ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const EnterPhoneNumber.noData()));
-                    },
-                    style: Buttons.ElevatedButtonStyle(),
-                    child: const Center(
-                        child: Text(
-                      "Login",
-                      style: TextStyle(color: Colors.white),
-                    )))
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const EnterPhoneNumber.noData()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12))),
+                  child: const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      child: Text(
+                        "Login",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

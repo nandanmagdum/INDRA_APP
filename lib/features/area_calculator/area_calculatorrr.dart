@@ -1,7 +1,6 @@
+
 import 'answer_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AreaCalculator extends StatefulWidget {
   const AreaCalculator({super.key});
@@ -21,8 +20,17 @@ class _AreaCalculatorState extends State<AreaCalculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[100],
       appBar: AppBar(
-        title: const Text("Area Calculator"),
+        toolbarHeight: 80,
+        centerTitle: true,
+        backgroundColor: Colors.green,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        title: Text("Area Calculator",
+            style: Theme.of(context)
+                .textTheme
+                .displaySmall!
+                .copyWith(fontWeight: FontWeight.bold, color: Colors.white)),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -32,13 +40,12 @@ class _AreaCalculatorState extends State<AreaCalculator> {
             children: [
               // Text("Enter Area | Enter length and width"),
               // length input
-              const Text(
-                "Enter Length of the field",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
+              const Text("Enter Length of the field",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  )),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   SizedBox(
@@ -57,36 +64,31 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 15,
+                  const SizedBox(width: 15),
+                  SizedBox(
+                    width: 150,
+                    child: DropdownButton(
+                        value: lengthUnit,
+                        items: ["meter", "foot"]
+                            .map((e) => DropdownMenuItem(
+                                  child: Text(e),
+                                  value: e,
+                                ))
+                            .toList(),
+                        onChanged: (String? value) {
+                          setState(() {
+                            lengthUnit = value.toString();
+                          });
+                        }),
                   ),
-                  DropdownButton(
-                      value: lengthUnit,
-                      items: ["meter", "foot"]
-                          .map((e) => DropdownMenuItem(
-                                child: Text(e),
-                                value: e,
-                              ))
-                          .toList(),
-                      onChanged: (String? value) {
-                        setState(() {
-                          lengthUnit = value.toString();
-                        });
-                      }),
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
 
               // width input
-              const Text(
-                "Enter Width of the field",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
+              const Text("Enter Width of the field",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   SizedBox(
@@ -123,40 +125,23 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                       }),
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               // divider
               const Row(
                 children: [
-                  Expanded(
-                    child: Divider(
-                      thickness: 4,
-                    ),
-                  ),
-                  Text(
-                    "  OR  ",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      thickness: 4,
-                    ),
-                  ),
+                  Expanded(child: Divider(thickness: 4, color: Colors.grey)),
+                  Text("  OR  ",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Expanded(child: Divider(thickness: 4, color: Colors.grey))
                 ],
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
 
               // area input
-              const Text(
-                "Enter Area of the field",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
+              const Text("Enter Area of the field",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   SizedBox(
@@ -175,9 +160,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 15,
-                  ),
+                  const SizedBox(width: 15),
                   DropdownButton(
                       value: areaUnit,
                       items: ["sq_meter", "sq_foot", "acre", "gunta"]
@@ -193,24 +176,14 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                       }),
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
 
-              const Divider(
-                thickness: 3,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
+              const Divider(thickness: 3),
+              const SizedBox(height: 20),
               // plant to plant distance
-              const Text(
-                "Enter plant to plant distance (mm)",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
+              const Text("Enter plant to plant distance (mm)",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 5),
 
               SizedBox(
                 child: TextField(
@@ -228,9 +201,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                 ),
               ),
 
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
                   print(length.text);
@@ -382,7 +353,19 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                         content: Text("Please Enter the required data")));
                   }
                 },
-                child: const Text("Calculate Number of Saplings required"),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12))),
+                child: const Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 15),
+                    child: Text(
+                      "Calculate Number of Saplings required",
+                      style: TextStyle(color: Colors.white,fontSize: 16),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
@@ -392,6 +375,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
   }
 }
 
+// ignore: must_be_immutable
 class MyDropDown extends StatefulWidget {
   final List<String> items;
   String unit;

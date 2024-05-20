@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:version1/features/auth/screens/enter_phone.dart';
 
 import '../MainScreen.dart/main_screen.dart';
 import 'welcome_screen.dart';

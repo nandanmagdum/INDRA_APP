@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,20 +36,29 @@ class _ProfilePageState extends State<ProfilePage> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        drawer: const Drawer(
-            child: Column(
-          children: [
-            SizedBox(height: 200),
-            ListTile(
-              title: Text("Informational Video"),
-              leading: Icon(Icons.video_call_sharp),
-            ),
-            ListTile(
-              title: Text("Chat Bot"),
-              leading: Icon(Icons.chat),
-            ),
-          ],
-        )),
+        drawer: Drawer(
+          child: Column(
+            children: [
+              Container(
+                height: 200,
+                color: Colors.green,
+              ),
+              const Card(
+                child: ListTile(
+                  title: Text("Informational Video"),
+                  leading: Icon(Icons.video_call_sharp),
+                ),
+              ),
+              const Card(
+                shadowColor: Colors.green,
+                child: ListTile(
+                  title: Text("Chat Bot"),
+                  leading: Icon(Icons.chat),
+                ),
+              ),
+            ],
+          ),
+        ),
         appBar: AppBar(
           title: Text(
             "Profile",
@@ -70,7 +80,11 @@ class _ProfilePageState extends State<ProfilePage> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
-                return const Center(child: Text("Snapshot data error"));
+                return Center(
+                    child: Text(
+                  "Snapshot data error",
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ));
               } else {
                 final data = snapshot.data!;
                 return Padding(

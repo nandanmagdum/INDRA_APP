@@ -2,8 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:version1/features/auth/splash_screen.dart';
 import 'package:version1/firebase_options.dart';
+
+import 'features/auth/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,9 +22,11 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
         designSize: Size(screenWidth, screenHeight),
         builder: (_, context) {
-          return const MaterialApp(
+          return MaterialApp(
+            theme: ThemeData(fontFamily: 'poppins'),
             debugShowCheckedModeBanner: false,
-            home: SplashScreen(),
+            home: const SplashScreen(),
+            // home: const MainScreen(),
             // home: EnterUserDetails(),
           );
         });

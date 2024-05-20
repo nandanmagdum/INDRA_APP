@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:version1/features/MainScreen.dart/main_screen.dart';
 import 'package:version1/features/auth/services/authFunctions.dart';
@@ -7,6 +6,7 @@ import 'package:version1/models/user_model.dart';
 
 import '../../../utils/button_style.dart';
 
+// ignore: must_be_immutable
 class EnterUserDetails extends StatefulWidget {
   String phoneNumber, uid;
   EnterUserDetails({required this.phoneNumber, required this.uid, super.key});
