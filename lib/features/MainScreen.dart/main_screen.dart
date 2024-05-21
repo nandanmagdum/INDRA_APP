@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:version1/features/area_calculator/area_calculatorrr.dart';
+import 'package:version1/features/disease_predicttion/image_screen.dart';
 import 'package:version1/features/fertilizer_recommedator/fertilizer_recommedator.dart';
 import 'package:version1/features/location_map/location_tracking_screen.dart';
 import 'package:version1/features/profile_page/profile_page.dart';
 import 'package:version1/features/soil_type/soil_type.dart';
-
 
 final bottomNavigationBarProvider = StateProvider((ref) => 0);
 
@@ -19,7 +19,7 @@ class MainScreen extends ConsumerWidget {
         index: ref.watch(bottomNavigationBarProvider),
         children: const [
           AreaCalculator(),
-          SoilType(),
+          ImageScreen(),
           Recommdator(),
           LocationTracking(),
           ProfilePage()
@@ -48,7 +48,7 @@ class MainScreen extends ConsumerWidget {
             BottomNavigationBarItem(
                 icon: Icon(Icons.calculate_outlined), label: "Area"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.nature_outlined), label: "Soil"),
+                icon: Icon(Icons.nature_outlined), label: "Disease"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.medical_services_outlined),
                 label: "Fertilizer"),

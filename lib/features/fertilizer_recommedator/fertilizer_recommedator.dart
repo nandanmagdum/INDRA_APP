@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Recommdator extends StatefulWidget {
   const Recommdator({super.key});
@@ -34,7 +33,7 @@ class _RecommdatorState extends State<Recommdator> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal:10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -44,7 +43,8 @@ class _RecommdatorState extends State<Recommdator> {
                   kcontroller: soilTypeController, hintText: "Soil Type"),
               const SizedBox(height: 20),
               customTextField(
-                  kcontroller: saplingTypeController, hintText: "Type of Sapling"),
+                  kcontroller: saplingTypeController,
+                  hintText: "Type of Sapling"),
               const SizedBox(height: 20),
               customTextField(
                   kcontroller: irrigationTypeTypeController,
@@ -75,14 +75,12 @@ class _RecommdatorState extends State<Recommdator> {
               ),
               Text(
                 "Best Fertilizers for your crop",
-                style: smallbody(),
               ),
               const SizedBox(
                 height: 10,
               ),
               Text(
                 "1. Ammonium Sulphate\n2. Single Super Phospate\n3. Urea",
-                style: smallbody(),
               ),
               SizedBox(
                 height: screenHeight * 0.01,
@@ -93,9 +91,6 @@ class _RecommdatorState extends State<Recommdator> {
       ),
     );
   }
-
-  TextStyle smallbody() =>
-      GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w500);
 
   Widget customTextField(
           {required final TextEditingController kcontroller,

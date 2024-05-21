@@ -35,7 +35,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  google_fonts: ^6.1.0
   flutter_riverpod: ^2.5.1
   google_maps_flutter: ^2.6.1
   flutter_polyline_points: ^2.0.0
@@ -47,6 +46,11 @@ dependencies:
   pinput: ^4.0.0
   dio: ^5.4.3+1
   shared_preferences: ^2.2.3
+  google_generative_ai: ^0.4.0
+  youtube_player_flutter: ^9.0.1
+  image_picker: ^1.1.1
+  tflite: ^1.1.2
+  mutex: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +77,24 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/models/Apple/model_unquant.tflite
+    - assets/models/Apple/labels.txt
+    - assets/models/BellPepper/model_unquant.tflite
+    - assets/models/BellPepper/labels.txt
+    - assets/models/Cherry/model_unquant.tflite
+    - assets/models/Cherry/labels.txt
+    - assets/models/Corn/model_unquant.tflite
+    - assets/models/Corn/labels.txt
+    - assets/models/Grape/model_unquant.tflite
+    - assets/models/Grape/labels.txt
+    - assets/models/Peach/model_unquant.tflite
+    - assets/models/Peach/labels.txt
+    - assets/models/Potato/model_unquant.tflite
+    - assets/models/Potato/labels.txt
+    - assets/models/Rice/model_unquant.tflite
+    - assets/models/Rice/labels.txt
+    - assets/models/Tomato/
+    - assets/models/Tomato/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

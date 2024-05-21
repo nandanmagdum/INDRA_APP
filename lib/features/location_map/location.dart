@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Location extends StatefulWidget {
   const Location({super.key});
@@ -21,21 +20,19 @@ class _LocationState extends State<Location> {
         ),
         Text(
           "Current Location : Patan , Karad",
-          style: smallbody(),
+          style: Theme.of(context).textTheme.bodySmall,
         ),
         SizedBox(
           height: 10,
         ),
         Text(
           "Machine State: ON",
-          style: smallbody(),
         ),
         SizedBox(
           height: 10,
         ),
         Text(
           "Last location : Vidyanagar, Karad",
-          style: smallbody(),
         ),
         SizedBox(
           height: 10,
@@ -52,7 +49,4 @@ class _LocationState extends State<Location> {
       ],
     );
   }
-
-  TextStyle smallbody() =>
-      GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w500);
 }

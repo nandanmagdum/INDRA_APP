@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class SoilType extends StatefulWidget {
-  const SoilType({super.key});
+class DiseasePrediction extends StatefulWidget {
+  const DiseasePrediction({super.key});
 
   @override
-  State<SoilType> createState() => _SoilTypeState();
+  State<DiseasePrediction> createState() => _DiseasePredictionState();
 }
 
-class _SoilTypeState extends State<SoilType> {
+class _DiseasePredictionState extends State<DiseasePrediction> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -24,67 +23,14 @@ class _SoilTypeState extends State<SoilType> {
         backgroundColor: Colors.green,
         centerTitle: true,
         toolbarHeight: 80,
-        title: Text("Soil Type",
+        title: Text("Disease Prediction",
             style: Theme.of(context)
                 .textTheme
                 .displaySmall!
                 .copyWith(fontWeight: FontWeight.bold, color: Colors.white)),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: screenHeight * 0.01),
-              // Text(
-              //   "Soil Type",
-              //   style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-              // ),
-              SizedBox(height: screenHeight * 0.01),
-              customTextField(
-                  kcontroller: soilTypeController, hintText: "Soil Type"),
-              const SizedBox(height: 20),
-              customTextField(
-                  kcontroller: saplingTypeController,
-                  hintText: "Type of Sapling"),
-              const SizedBox(height: 20),
-              customTextField(
-                  kcontroller: fertilizerTypeController,
-                  hintText: "Type of fertilizer"),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12))),
-                child: const Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    child: Text(
-                      "Calculate",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: screenHeight * 0.05),
-              const Divider(),
-              SizedBox(height: screenHeight * 0.05),
-              Text("Time of harvest : 19-Nov-2023", style: smallbody()),
-              SizedBox(height: screenHeight * 0.01),
-              Text("Crop Yield: 100 kg", style: smallbody()),
-              SizedBox(height: screenHeight * 0.01),
-            ],
-          ),
-        ),
-      ),
     );
   }
-
-  TextStyle smallbody() =>
-      GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w500);
 
   Widget customTextField(
           {required final TextEditingController kcontroller,

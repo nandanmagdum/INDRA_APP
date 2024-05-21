@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:version1/features/auth/services/authFunctions.dart';
 import 'package:dio/dio.dart';
+import 'package:version1/features/chatbot/gemini.dart';
+import 'package:version1/features/videos/videoList.dart';
 import 'package:version1/utils/api_urls.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -43,15 +45,23 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 200,
                 color: Colors.green,
               ),
-              const Card(
+              Card(
                 child: ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => VideoList()));
+                  },
                   title: Text("Informational Video"),
                   leading: Icon(Icons.video_call_sharp),
                 ),
               ),
-              const Card(
+              Card(
                 shadowColor: Colors.green,
                 child: ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => GEMINI()));
+                  },
                   title: Text("Chat Bot"),
                   leading: Icon(Icons.chat),
                 ),
