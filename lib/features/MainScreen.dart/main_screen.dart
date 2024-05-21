@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:version1/features/area_calculator/area_calculatorrr.dart';
+import 'package:version1/features/disease_predicttion/crop_list.dart';
 import 'package:version1/features/disease_predicttion/image_screen.dart';
 import 'package:version1/features/fertilizer_recommedator/fertilizer_recommedator.dart';
 import 'package:version1/features/location_map/location_tracking_screen.dart';
@@ -19,7 +20,7 @@ class MainScreen extends ConsumerWidget {
         index: ref.watch(bottomNavigationBarProvider),
         children: const [
           AreaCalculator(),
-          ImageScreen(),
+          CropList(),
           Recommdator(),
           LocationTracking(),
           ProfilePage()

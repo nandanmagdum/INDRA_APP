@@ -7,7 +7,8 @@ import 'package:tflite/tflite.dart';
 import 'package:mutex/mutex.dart';
 
 class ImageScreen extends StatefulWidget {
-  const ImageScreen({super.key});
+  final String crop;
+  ImageScreen({super.key, required this.crop});
 
   @override
   State<ImageScreen> createState() => _ImageScreenState();
@@ -83,8 +84,8 @@ class _ImageScreenState extends State<ImageScreen> {
   Future loadModel() async {
     try {
       var resultant = await Tflite.loadModel(
-          model: "assets/models/Tomato/model_unquant.tflite",
-          labels: "assets/models/Tomato/labels.txt");
+          model: "assets/models/${widget.crop}/${widget.crop}.tflite",
+          labels: "assets/models/${widget.crop}/labels.txt");
       print(resultant);
       return resultant;
     } catch (e) {
@@ -107,7 +108,7 @@ class _ImageScreenState extends State<ImageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Disease Prediction"),
+        title: Text("${widget.crop}"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
