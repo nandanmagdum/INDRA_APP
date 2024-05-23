@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../services/authFunctions.dart';
 
@@ -26,9 +27,6 @@ class _EnterPhoneNumberState extends State<EnterPhoneNumber> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // floatingActionButton: FloatingActionButton(onPressed: () {
-        //   print(number.toString());
-        // }),
         body: SafeArea(
       child: SingleChildScrollView(
         child: Padding(
@@ -91,13 +89,13 @@ class _EnterPhoneNumberState extends State<EnterPhoneNumber> {
                 child: Center(
                   child: (isLoading)
                       ? const CircularProgressIndicator()
-                      :   const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        child: Text(
-                          "Continue",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
+                      : const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          child: Text(
+                            "Continue",
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
                         ),
-                      ),
                 ),
               ),
             ],

@@ -1,4 +1,3 @@
-
 import 'answer_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -22,14 +21,14 @@ class _AreaCalculatorState extends State<AreaCalculator> {
     return Scaffold(
       backgroundColor: Colors.blueGrey[100],
       appBar: AppBar(
-        toolbarHeight: 80,
+        toolbarHeight: 70,
         centerTitle: true,
         backgroundColor: Colors.green,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         title: Text("Area Calculator",
             style: Theme.of(context)
                 .textTheme
-                .displaySmall!
+                .headlineMedium!
                 .copyWith(fontWeight: FontWeight.bold, color: Colors.white)),
       ),
       body: SingleChildScrollView(
@@ -362,7 +361,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                     padding: EdgeInsets.symmetric(vertical: 15),
                     child: Text(
                       "Calculate Number of Saplings required",
-                      style: TextStyle(color: Colors.white,fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
                 ),

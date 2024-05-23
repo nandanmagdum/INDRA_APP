@@ -38,6 +38,14 @@ class _ProfilePageState extends State<ProfilePage> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+        // floatingActionButton: FloatingActionButton(onPressed: () async {
+        //   SharedPreferences prefs = await SharedPreferences.getInstance();
+        //   String uid = prefs.getString("token")!;
+        //   String jwt = prefs.getString("jwt")!;
+
+        //   print(uid);
+        //   print(jwt);
+        // }),
         drawer: Drawer(
           child: Column(
             children: [

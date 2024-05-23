@@ -1,0 +1,5 @@
+0 healthy
+1 leaf curl
+2 leaf spot
+3 whitefly
+4 yellowish

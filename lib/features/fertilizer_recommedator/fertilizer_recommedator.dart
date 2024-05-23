@@ -25,7 +25,7 @@ class _RecommdatorState extends State<Recommdator> {
         centerTitle: true,
         toolbarHeight: 80,
         title: Text("Fertilizer recommendation",
-            style: Theme.of(context).textTheme.displaySmall!.copyWith(
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
                 fontSize: 30.sp,
