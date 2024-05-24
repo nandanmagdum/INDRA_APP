@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:version1/features/fertilizer_recommedator/fertilizer_serivces.dart';
+import 'package:version1/utils/colors.dart';
 
 // final cropProvider = StateProvider<String>((ref) => "Tomato");
 
@@ -30,6 +33,10 @@ class _RecommdatorState extends State<Recommdator> {
     "Jowar(Sorghum)",
     "Barley(JAV)"
   ];
+
+  final _controller = TextEditingController();
+
+  String? _errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +69,10 @@ class _RecommdatorState extends State<Recommdator> {
                 child: DropdownButtonFormField(
                   icon: const Icon(Icons.keyboard_arrow_down_rounded),
                   iconSize: 40,
+
                   iconEnabledColor: Colors.grey,
                   decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
                     filled: true,
                     fillColor: Colors.transparent,
                     enabledBorder: OutlineInputBorder(
@@ -95,19 +104,24 @@ class _RecommdatorState extends State<Recommdator> {
                   }).toList(),
                   onChanged: (String? newValue) {
                     crop = newValue!;
-                    crop = newValue;
                   },
                 ),
               ),
               const SizedBox(height: 20),
               customTextField(
-                  kcontroller: nitrogenController, hintText: "Nitrogen"),
+                  kcontroller: nitrogenController,
+                  hintText: "Nitrogen",
+                  icon: const Icon(Icons.gas_meter)),
               const SizedBox(height: 20),
               customTextField(
-                  kcontroller: potassiumController, hintText: "Potassium"),
+                  kcontroller: potassiumController,
+                  hintText: "Potassium",
+                  icon: const Icon(Icons.gas_meter_rounded)),
               const SizedBox(height: 20),
               customTextField(
-                  kcontroller: phosphorousController, hintText: "Phosphorous"),
+                  kcontroller: phosphorousController,
+                  hintText: "Phosphorous",
+                  icon: const Icon(Icons.gas_meter)),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
@@ -147,32 +161,46 @@ class _RecommdatorState extends State<Recommdator> {
                       builder: (BuildContext context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return CircularProgressIndicator();
+                          return const SpinKitCircle(color: primaryColor);
                         } else if (snapshot.hasError) {
                           return const Text("Error!");
                         } else {
                           print("************ ${snapshot.data}");
                           if (snapshot.hasData) {
                             return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(snapshot.data["recommendation"]["message"]
-                                    .toString()),
-                                Text(snapshot.data["recommendation"]
-                                        ["suggestions"]
-                                    .toString()),
-                                ListView.builder(
-                                  itemCount: snapshot
-                                      .data["recommendation"]["suggestions"]
-                                      .length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Card(
-                                        child: ListTile(
-                                      title: Text(
-                                          snapshot.data["recommendation"]
-                                              ["suggestions"][index]),
-                                    ));
-                                  },
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Text(
+                                      snapshot.data["recommendation"]["message"]
+                                          .toString(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall),
+                                ),
+                                const SizedBox(height: 20),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+
+                                    itemCount: snapshot
+                                        .data["recommendation"]["suggestions"]
+                                        .length,
+                                    // itemCount: 10,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Card(
+                                          child: ListTile(
+                                        title: Text(
+                                            snapshot.data["recommendation"]
+                                                ["suggestions"][index]),
+                                      ));
+                                    },
+                                  ),
                                 )
                               ],
                             );
@@ -189,31 +217,29 @@ class _RecommdatorState extends State<Recommdator> {
     );
   }
 
-  String validateNumber(String value) {
+  String? validateNumber(String value) {
     if (value.isEmpty) {
-      return 'Please enter a value.'; // Handle empty input
+      return 'Please enter a value.';
     }
     final number = int.tryParse(value);
     if (number == null) {
-      return 'Please enter a valid number.'; // Handle non-numeric input
+      return 'Please enter a valid number.';
     }
     if (number > 60) {
       return 'Value must be less than or equal to 60.';
     }
-    return "null"; // Input is valid
+    return null; // Input is valid, no error message
   }
 
   Widget customTextField(
           {required final TextEditingController kcontroller,
           required final hintText,
-          final icon = const Icon(
-            Icons.search,
-            color: Color(0xFF638787),
-          )}) =>
+          required final icon}) =>
       TextFormField(
         controller: kcontroller,
         onChanged: (value) {
           kcontroller.text = value;
+          _errorMessage = validateNumber(value);
         },
         // maxLength: 2,
         inputFormatters: [
@@ -229,14 +255,15 @@ class _RecommdatorState extends State<Recommdator> {
           }
           return null; // Input is valid
         },
+
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-          prefixIcon: const Icon(
-            Icons.search,
-            color: Color(0xFF638787),
-          ),
+          labelText: hintText,
+          errorText: _errorMessage, // Display error message if any
+
+          prefixIcon: icon,
           fillColor: Colors.transparent,
-          hintText: hintText,
+          hintText: "Enter a nujmber (max 60)",
           filled: true,
           iconColor: const Color(0xFF638787),
           border: OutlineInputBorder(
