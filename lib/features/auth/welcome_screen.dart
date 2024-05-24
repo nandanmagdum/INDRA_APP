@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
+import "package:get/get.dart";
 
 import "screens/enter_phone.dart";
 
@@ -19,8 +20,8 @@ class WelcomeScreen extends StatelessWidget {
                 SizedBox(height: 70.h),
                 const Image(image: AssetImage("assets/app_logo.jpg")),
                 SizedBox(height: 20.h),
-                const Text(
-                  "Team INDRA App",
+                Text(
+                  "title".tr,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
@@ -42,11 +43,11 @@ class WelcomeScreen extends StatelessWidget {
                       backgroundColor: Colors.green,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12))),
-                  child: const Center(
+                  child: Center(
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 15),
                       child: Text(
-                        "Login",
+                        "login".tr,
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),

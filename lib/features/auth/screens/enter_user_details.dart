@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:version1/features/MainScreen.dart/main_screen.dart';
 import 'package:version1/features/auth/services/authFunctions.dart';
 import 'package:version1/models/user_model.dart';
@@ -39,44 +40,44 @@ class _EnterPhoneNumberState extends State<EnterUserDetails> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 40.h),
-              const Text(
-                "Enter User Details",
+              Text(
+                "enter_details".tr,
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10.h),
               Buttons.CustomTextField(
-                  labelText: 'Name',
+                  labelText: 'name'.tr,
                   controller: nameController,
                   icon: const Icon(Icons.person)),
               SizedBox(height: 10.h),
               Buttons.CustomTextField(
-                  labelText: 'Street',
+                  labelText: 'street'.tr,
                   controller: streetController,
                   icon: const Icon(Icons.roundabout_left_rounded)),
               SizedBox(height: 10.h),
               Buttons.CustomTextField(
-                  labelText: 'Village',
+                  labelText: 'village'.tr,
                   controller: villageController,
                   icon: const Icon(Icons.location_history)),
               SizedBox(height: 10.h),
               Buttons.CustomTextField(
-                  labelText: 'Taluka',
+                  labelText: 'taluka'.tr,
                   controller: talukaController,
                   icon: const Icon(Icons.location_history)),
               SizedBox(height: 10.h),
               Buttons.CustomTextField(
-                  labelText: 'District',
+                  labelText: 'district'.tr,
                   controller: districtController,
                   icon: const Icon(Icons.location_history)),
               SizedBox(height: 10.h),
               Buttons.CustomTextField(
                   keyboardType: TextInputType.number,
-                  labelText: 'Zip',
+                  labelText: 'zip'.tr,
                   controller: zipController,
                   icon: const Icon(Icons.numbers_rounded)),
               SizedBox(height: 10.h),
               Buttons.CustomTextField(
-                  labelText: 'State',
+                  labelText: 'state'.tr,
                   controller: stateController,
                   icon: const Icon(Icons.map)),
               SizedBox(height: 20.h),
@@ -103,8 +104,8 @@ class _EnterPhoneNumberState extends State<EnterUserDetails> {
                   },
                   child: (isLoading)
                       ? const Center(child: CircularProgressIndicator())
-                      : const Center(
-                          child: Text("Proceed",
+                      : Center(
+                          child: Text("continue".tr,
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold)))),

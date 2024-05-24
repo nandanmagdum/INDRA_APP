@@ -2,9 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:version1/features/auth/screens/enter_user_details.dart';
 import 'package:version1/features/auth/services/authFunctions.dart';
+import 'package:version1/features/languages/language_translators.dart';
 
 import '../../../utils/button_style.dart';
 import '../../../utils/colors.dart';
@@ -51,13 +54,13 @@ class _EnterPhoneNumberState extends State<EnterOTP> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 40.h),
-              const Text(
-                "OTP Verification",
+              Text(
+                "otp_verification".tr,
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10.h),
               Text(
-                "Enter the six digit code sent to your \nphone number ${widget.PhoneNumber}",
+                "otp_msg".tr + " ${widget.PhoneNumber}",
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium
@@ -80,15 +83,15 @@ class _EnterPhoneNumberState extends State<EnterOTP> {
                 ],
               ),
               SizedBox(height: 50.h),
-              Row(
-                children: [
-                  const Text("Didn't get a code? "),
-                  GestureDetector(
-                      onTap: (() {}),
-                      child: const Text("Click to resend",
-                          style: TextStyle(color: Colors.blue)))
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Text("otp_not_got".tr),
+              //     GestureDetector(
+              //         onTap: (() {}),
+              //         child: const Text("Click to resend",
+              //             style: TextStyle(color: Colors.blue)))
+              //   ],
+              // ),
               SizedBox(height: 20.h),
               ElevatedButton(
                 onPressed: () async {
@@ -123,8 +126,14 @@ class _EnterPhoneNumberState extends State<EnterOTP> {
                       },
                     );
                   } catch (e) {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    final error_msg = await LanguageTranslators.tranlate(
+                        input: e.toString(),
+                        sourceLanguage: "en",
+                        targetLanguage: prefs.getString("lang").toString());
                     ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("Error : " + e.toString())));
+                        SnackBar(content: Text("Error : " + error_msg)));
                   }
                   setState(() => isLoading = false);
                 },
@@ -133,8 +142,8 @@ class _EnterPhoneNumberState extends State<EnterOTP> {
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
-                    : const Center(
-                        child: Text("Verify",
+                    : Center(
+                        child: Text("continue".tr,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold))),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:version1/features/languages/language_translators.dart';
 
 import '../services/authFunctions.dart';
 
@@ -36,13 +38,13 @@ class _EnterPhoneNumberState extends State<EnterPhoneNumber> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 40.h),
-              const Text(
-                "OTP Verification",
+              Text(
+                "otp_verification".tr,
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10.h),
               Text(
-                "Please enter the mobile number to get the verification code",
+                "otp_instruction".tr,
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium
@@ -56,8 +58,8 @@ class _EnterPhoneNumberState extends State<EnterPhoneNumber> {
                 ),
                 child: InternationalPhoneNumberInput(
                     initialValue: PhoneNumber(isoCode: "IN"),
-                    inputDecoration: const InputDecoration(
-                        hintText: 'Phone Number',
+                    inputDecoration: InputDecoration(
+                        hintText: 'phone_number'.tr,
                         labelStyle: TextStyle(color: Colors.black),
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.symmetric(vertical: 20)),
@@ -81,6 +83,12 @@ class _EnterPhoneNumberState extends State<EnterPhoneNumber> {
                         type: "Login",
                         context: context);
                   } catch (e) {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    final phone_err = await LanguageTranslators.tranlate(
+                        input: e.toString(),
+                        sourceLanguage: "en",
+                        targetLanguage: prefs.getString("lang").toString());
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text('Enter Phone error : ' + e.toString())));
                   }
@@ -89,10 +97,10 @@ class _EnterPhoneNumberState extends State<EnterPhoneNumber> {
                 child: Center(
                   child: (isLoading)
                       ? const CircularProgressIndicator()
-                      : const Padding(
+                      : Padding(
                           padding: EdgeInsets.symmetric(vertical: 15),
                           child: Text(
-                            "Continue",
+                            "continue".tr,
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                         ),

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:version1/features/auth/welcome_screen.dart';
+import 'package:version1/features/languages/language_translators.dart';
 import 'package:version1/models/user_model.dart';
 import 'package:version1/utils/api_urls.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,7 +39,6 @@ class AuthFunctions {
           "state": user.state
         }
       });
-
       sharedPreferences.setString("jwt", response.data);
       sharedPreferences.setString("token", user.uid!);
     } catch (e) {
@@ -74,10 +74,19 @@ class AuthFunctions {
       required String type,
       List<String>? userdata,
       required BuildContext context}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       await FirebaseAuth.instance.verifyPhoneNumber(
           verificationCompleted: (PhoneAuthCredential credential) {},
-          verificationFailed: (FirebaseAuthException e) {
+          verificationFailed: (FirebaseAuthException e) async {
+            await LanguageTranslators.tranlate(
+                input: e.toString(),
+                sourceLanguage: "en",
+                targetLanguage: prefs.getString("lang").toString());
+            final error_msg = await LanguageTranslators.tranlate(
+                input: e.message.toString(),
+                sourceLanguage: 'en',
+                targetLanguage: prefs.getString("lang").toString());
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               backgroundColor: Colors.white,
               behavior: SnackBarBehavior.floating,
@@ -85,7 +94,7 @@ class AuthFunctions {
                 leading: Icon(Icons.error, color: Colors.red),
                 title: Text(
                     // 'Please enter valid phone number',
-                    e.message.toString()),
+                    error_msg.text),
               ),
             ));
           },
@@ -105,6 +114,11 @@ class AuthFunctions {
           codeAutoRetrievalTimeout: (String verification) {},
           phoneNumber: phoneNumber);
     } catch (e) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final error_mesg = await LanguageTranslators.tranlate(
+          input: e.toString(),
+          sourceLanguage: "en",
+          targetLanguage: prefs.getString("lang").toString());
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('backend Exception: ' + e.toString())));
     }
