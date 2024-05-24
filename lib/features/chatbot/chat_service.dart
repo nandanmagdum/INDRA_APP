@@ -11,7 +11,7 @@ class ChatService {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String token = pref.getString("jwt")!;
     try {
-      Response response = await dio.post(base_url,
+      Response response = await dio.post("${base_url}prompt/",
           data: {"prompt": prompt, "answer": answer},
           options: Options(headers: {"Authorization": token}));
 
@@ -29,10 +29,12 @@ class ChatService {
     String token = pref.getString("jwt")!;
     print(token);
     try {
-      Response response = await dio.post(base_url,
+      Response response = await dio.get("${base_url}prompt/",
           options: Options(headers: {"Authorization": token}));
+
       print(
           "Status Code : ${response.statusCode}  Response Data : ${response.data}");
+
       return response.data;
     } on DioException catch (e) {
       print("Error occured whlile adding chat : $e");
