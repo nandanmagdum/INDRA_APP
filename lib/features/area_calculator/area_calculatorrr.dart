@@ -1,4 +1,5 @@
 import 'answer_screen.dart';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class AreaCalculator extends StatefulWidget {
@@ -25,7 +26,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
         centerTitle: true,
         backgroundColor: Colors.green,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        title: Text("Area Calculator",
+        title: Text("area_calculator".tr,
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium!
@@ -39,7 +40,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
             children: [
               // Text("Enter Area | Enter length and width"),
               // length input
-              const Text("Enter Length of the field",
+              Text("enter_length".tr,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -56,7 +57,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                         length.text = value;
                       },
                       decoration: InputDecoration(
-                        hintText: "Length",
+                        hintText: "length".tr,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -70,7 +71,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                         value: lengthUnit,
                         items: ["meter", "foot"]
                             .map((e) => DropdownMenuItem(
-                                  child: Text(e),
+                                  child: Text("${e}".tr),
                                   value: e,
                                 ))
                             .toList(),
@@ -85,7 +86,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
               const SizedBox(height: 30),
 
               // width input
-              const Text("Enter Width of the field",
+               Text("enter_width".tr,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 5),
               Row(
@@ -99,7 +100,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                         width.text = value;
                       },
                       decoration: InputDecoration(
-                        hintText: "Width",
+                        hintText: "width".tr,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -113,7 +114,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                       value: widthUnit,
                       items: ["meter", "foot"]
                           .map((e) => DropdownMenuItem(
-                                child: Text(e),
+                                child: Text("${e}".tr),
                                 value: e,
                               ))
                           .toList(),
@@ -126,10 +127,10 @@ class _AreaCalculatorState extends State<AreaCalculator> {
               ),
               const SizedBox(height: 30),
               // divider
-              const Row(
+              Row(
                 children: [
                   Expanded(child: Divider(thickness: 4, color: Colors.grey)),
-                  Text("  OR  ",
+                  Text("OR".tr,
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   Expanded(child: Divider(thickness: 4, color: Colors.grey))
@@ -138,7 +139,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
               const SizedBox(height: 10),
 
               // area input
-              const Text("Enter Area of the field",
+              Text("enter_area".tr,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 5),
               Row(
@@ -152,7 +153,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                         area.text = value;
                       },
                       decoration: InputDecoration(
-                        hintText: "Area",
+                        hintText: "area".tr,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -164,7 +165,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                       value: areaUnit,
                       items: ["sq_meter", "sq_foot", "acre", "gunta"]
                           .map((e) => DropdownMenuItem(
-                                child: Text(e),
+                                child: Text("${e}".tr),
                                 value: e,
                               ))
                           .toList(),
@@ -180,7 +181,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
               const Divider(thickness: 3),
               const SizedBox(height: 20),
               // plant to plant distance
-              const Text("Enter plant to plant distance (mm)",
+              Text("enter_plant_to_plant_distance".tr,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 5),
 
@@ -192,7 +193,7 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                     plant_distance.text = value;
                   },
                   decoration: InputDecoration(
-                    hintText: "Plant to Plant distance",
+                    hintText: "p_to_p_distance".tr,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -226,9 +227,9 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                                     AnswerScreen(Answer: ANSWER)));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                SnackBar(
                                     content: Text(
-                                        "Please Enter valid Plant to Plant Distance")));
+                                        "please_enter_required_data".tr)));
                             return;
                           }
                           break;
@@ -244,9 +245,9 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                                     AnswerScreen(Answer: ANSWER)));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                SnackBar(
                                     content: Text(
-                                        "Please Enter valid Plant to Plant Distance")));
+                                        "enter_valid_p_to_p_distance".tr)));
                             return;
                           }
                           break;
@@ -262,9 +263,9 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                                     AnswerScreen(Answer: ANSWER)));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                SnackBar(
                                     content: Text(
-                                        "Please Enter valid Plant to Plant Distance")));
+                                        "enter_valid_p_to_p_distance".tr)));
                             return;
                           }
                           break;
@@ -280,21 +281,21 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                                     AnswerScreen(Answer: ANSWER)));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                SnackBar(
                                     content: Text(
-                                        "Please Enter valid Plant to Plant Distance")));
+                                        "enter_valid_p_to_p_distance".tr)));
                             return;
                           }
                           break;
                         default:
                           ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text("Something went wrong")));
+                              SnackBar(
+                                  content: Text("something_wrong".tr)));
                           return;
                       }
                     } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text("Please Enter valid Area")));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("something_wrong".tr)));
                     }
                   }
                   // only length and width is given
@@ -305,16 +306,16 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                       lengthInMM = double.parse(length.text);
                     } catch (e) {
                       ScaffoldMessenger.maybeOf(context)?.showSnackBar(
-                          const SnackBar(
-                              content: Text("Please Enter valid length")));
+                           SnackBar(
+                              content: Text("something_wrong".tr)));
                       return;
                     }
                     try {
                       widthInMM = double.parse(width.text);
                     } catch (e) {
                       ScaffoldMessenger.maybeOf(context)?.showSnackBar(
-                          const SnackBar(
-                              content: Text("Please Enter valid width")));
+                          SnackBar(
+                              content: Text("something_wrong".tr)));
                       return;
                     }
 
@@ -342,25 +343,25 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => AnswerScreen(Answer: ANSWER)));
                     } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(
-                              "Please Enter valid Plant to Plant Distance")));
+                              "enter_valid_p_to_p_distance".tr)));
                       return;
                     }
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Please Enter the required data")));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("please_enter_required_data".tr)));
                   }
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12))),
-                child: const Center(
+                child: Center(
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 15),
                     child: Text(
-                      "Calculate Number of Saplings required",
+                      "approx_sapling_count".tr,
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
@@ -391,7 +392,7 @@ class _MyDropDownState extends State<MyDropDown> {
         value: widget.unit.toString(),
         items: widget.items
             .map((e) => DropdownMenuItem(
-                  child: Text(e),
+                  child: Text("${e}".tr),
                   value: e,
                 ))
             .toList(),

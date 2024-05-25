@@ -2,9 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tflite/tflite.dart';
 import 'package:mutex/mutex.dart';
+import 'package:version1/features/languages/language_translators.dart';
 
 class ImageScreen extends StatefulWidget {
   final String crop;
@@ -26,6 +29,8 @@ class _ImageScreenState extends State<ImageScreen> {
   String disease_name = "";
 
   applyModelOnImage(File file) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     final modelStatus = await loadModel();
     print("*&*&*&&*&*&*&**&**&*&*&*&*&* ::: $modelStatus");
     try {
@@ -36,11 +41,14 @@ class _ImageScreenState extends State<ImageScreen> {
           imageMean: 127.5,
           imageStd: 127.5);
 
-      setState(() {
+      setState(() async{
         results = res!;
         // print(results);
         String str = results![0]["label"];
         name = str.substring(2);
+        // convert to local
+        final Tname = await LanguageTranslators.tranlate(input: name, sourceLanguage: "en", targetLanguage: prefs.getString("lang").toString());
+        name = Tname.text;
         confidence = results != null
             ? (results![0]["confidence"] * 100.0).toString().substring(0, 5) +
                 "%"
@@ -54,11 +62,18 @@ class _ImageScreenState extends State<ImageScreen> {
     }
   }
 
-  void split_model_result() {
+  void split_model_result() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     List temp = name.split(' ');
     crop_name = temp[0];
+    // convert
+    final Tname = await LanguageTranslators.tranlate(input: crop_name, sourceLanguage: "en", targetLanguage: prefs.getString("lang").toString());
+    crop_name = Tname.text;
     temp.removeAt(0);
     disease_name = temp.join(' ');
+    // convert
+    final Dname = await LanguageTranslators.tranlate(input: disease_name, sourceLanguage: "en", targetLanguage: prefs.getString("lang").toString());
+    disease_name = Dname.text;
     print(crop_name);
     print(disease_name);
   }
@@ -112,7 +127,7 @@ class _ImageScreenState extends State<ImageScreen> {
         backgroundColor: Colors.green,
         centerTitle: true,
         toolbarHeight: 70,
-        title: Text(widget.crop,
+        title: Text("${widget.crop}".tr,
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall!
@@ -154,8 +169,8 @@ class _ImageScreenState extends State<ImageScreen> {
                         ],
                       ),
                       child: image == null
-                          ? const Center(
-                              child: Text("Tap to select an image",
+                          ? Center(
+                              child: Text("tap_to_select_image".tr,
                                   style: TextStyle(fontSize: 20)))
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(10),
@@ -164,7 +179,7 @@ class _ImageScreenState extends State<ImageScreen> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.08),
-                const Text("Crop Details",
+                Text("crop_details".tr,
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -177,15 +192,15 @@ class _ImageScreenState extends State<ImageScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: image == null
-                      ? const Center(
+                      ? Center(
                           child:
-                              Text("Unknown", style: TextStyle(fontSize: 17)))
+                              Text("unknown".tr, style: TextStyle(fontSize: 17)))
                       : Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Wrap(
                               children: [
-                                Text("Disease : ",
+                                Text("disease".tr + " :",
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium!
@@ -200,7 +215,7 @@ class _ImageScreenState extends State<ImageScreen> {
                               ],
                             ),
                             Wrap(children: [
-                              Text("Confidance: ",
+                              Text("confidance".tr + ": ",
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium!
@@ -214,7 +229,7 @@ class _ImageScreenState extends State<ImageScreen> {
                                       .copyWith(fontSize: 18))
                             ]),
                             Wrap(children: [
-                              Text("Crop: ",
+                              Text("crop".tr + ": ",
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium!
@@ -228,7 +243,7 @@ class _ImageScreenState extends State<ImageScreen> {
                                       .copyWith(fontSize: 18))
                             ]),
                             Wrap(children: [
-                              Text("Disease name: ",
+                              Text("dis_name".tr + ": ",
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium!

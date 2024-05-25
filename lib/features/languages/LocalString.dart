@@ -23,6 +23,7 @@ class LocalString extends Translations {
           // area calculator
           "area_calculator": "Area Calculator",
           "enter_length": "Enter Length of the field",
+          "enter_width": "Enter Width of the field",
           "length": "Length",
           "meter": "meter",
           "foot": "foot",
@@ -164,7 +165,27 @@ class LocalString extends Translations {
           // enter user details
           "enter_details": "Enter User Details",
           "username": "Name",
+
+          // 
+          "something_wrong": "Something went wrong",
+
+          // fertilizer recommmend
+          "fertilizer_recom": "Fertilizer recommendation",
+          "soil_type": "Soil Type",
+
+          // fertilizer crop types
+          "Jawar(Sorghum)": "Jawar(Sorghum)",
+          "Barley(JAV)": "Barley(JAV)",
+          
+          "nitrogen": "Nitrogen",
+          "potassium": "Potassium",
+          "phosphorous": "Phosphorous",
+          "calculate": "Calculate",
+
+          "profile": "Profile",
+          "snapshot_error": "Snapshot data error",
         },
+
         ////////////////////////////////////////////////////////////////////
         // Hindi Language
         'hi_IN': {
@@ -186,6 +207,7 @@ class LocalString extends Translations {
           // area calculator
           "area_calculator": "क्षेत्र कैलकुलेटर",
           "enter_length": "फ़ील्ड की लंबाई दर्ज करें",
+          "enter_width": "फ़ील्ड की चौड़ाई दर्ज करें",
           "length": "लंबाई",
           "meter": "मीटर",
           "foot": "फुट",
@@ -327,6 +349,24 @@ class LocalString extends Translations {
 
           // enter user details
           "enter_details": "व्यक्ति विवरण दर्ज करें",
+
+          "something_wrong": "कुछ गलत हो गया",
+
+          // fertilizer recomd
+          "fertilizer_recom": "उर्वरक की सिफ़ारिश",
+          "soil_type": "मिट्टी के प्रकार",
+          // fertilizer crop types
+          "Jawar(Sorghum)": "ज्वार",
+          "Barley(JAV)": "जौ",
+
+          "nitrogen": "नाइट्रोजन",
+          "potassium": "पोटैशियम",
+          "phosphorous": "फ़ास्फ़रोस",
+          "calculate": "गणना",
+
+          "profile": "प्रोफ़ाइल",
+          "snapshot_error": "स्नैपशॉट डेटा त्रुटि",
+
         },
         // Marathi Language
         'mar_IN': {
@@ -349,6 +389,7 @@ class LocalString extends Translations {
           // area calculator
           "area_calculator": "क्षेत्र कॅल्क्युलेटर",
           "enter_length": "फील्डची लांबी प्रविष्ट करा",
+          "enter_width": "फील्डची रुंदी प्रविष्ट करा",
           "length": "लांबी",
           "meter": "मीटर",
           "foot": "फुट",
@@ -489,6 +530,26 @@ class LocalString extends Translations {
 
           //enter user details
           "enter_details": "व्यक्तीचे तपशील प्रविष्ट करा",
+
+          //
+          "something_wrong": "काहीतरी चूक झाली",
+
+          //fertilizer recommd
+          "fertilizer_recom": "खताची शिफारस",
+          "soil_type": "मातीचा प्रकार",
+
+          // fertilizer crop types
+          "Jawar(Sorghum)": "जावर",
+          "Barley(JAV)": "बार्ली",
+
+          "nitrogen": "नाइट्रोजन",
+          "potassium": "पोटैशियम",
+          "phosphorous": "फ़ास्फ़रोस",
+          "calculate": "गणना करा",
+
+          
+          "profile": "प्रोफ़ाइल",
+          "snapshot_error": "स्नैपशॉट डेटा त्रुटि",
         },
       };
 }

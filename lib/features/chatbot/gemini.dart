@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:version1/features/chatbot/chat_model.dart';
 import 'package:version1/features/chatbot/chat_service.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -45,7 +47,7 @@ class _GEMINIState extends State<GEMINI> {
             icon: const Icon(Icons.arrow_back_ios_new_rounded,
                 color: Colors.white)),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        title: Text("Chat Bot",
+        title: Text("chatbot".tr,
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium!

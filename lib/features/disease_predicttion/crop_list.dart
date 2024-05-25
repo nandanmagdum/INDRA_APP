@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:version1/features/disease_predicttion/image_screen.dart';
 
 class CropList extends StatefulWidget {
@@ -32,7 +33,7 @@ class _CropListState extends State<CropList> {
         backgroundColor: Colors.green,
         centerTitle: true,
         toolbarHeight: 70,
-        title: Text("Disease Prediction",
+        title: Text("disease_prediction".tr,
             style: Theme.of(context)
                 .textTheme
                 .headlineMedium!
@@ -96,7 +97,7 @@ Widget customCard(String cropName, String cropImage) {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(height: 100, child: Image.asset(cropImage)),
-        Text(cropName,
+        Text("${cropName}".tr,
             style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,

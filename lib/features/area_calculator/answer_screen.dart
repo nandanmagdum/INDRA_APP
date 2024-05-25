@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AnswerScreen extends StatelessWidget {
   final Answer;
@@ -22,7 +23,7 @@ class AnswerScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.03,
           ),
           Text(
-            "Approxiate required sapling count",
+            "approx_sapling_count".tr,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w100),
           ),
           SizedBox(
@@ -37,11 +38,11 @@ class AnswerScreen extends StatelessWidget {
           ),
           (Answer - 25 < 0)
               ? Text(
-                  'Suggested: ${0} to ${Answer + 25}',
+                  'suggested'.tr+': ${0} '+ "to".tr +'${Answer + 25}',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.normal),
                 )
               : Text(
-                  'Suggested: ${Answer - 25} to ${Answer + 25}',
+                  "suggested".tr + ': ${Answer - 25}' +  "to".tr + ' ${Answer + 25}',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.normal),
                 ),
           SizedBox(
@@ -50,7 +51,7 @@ class AnswerScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Text(
-              "*This are just approximate count, the actual requirement may vary due lot of other factors. Please take it into considerations !",
+              "warning_cnt".tr,
               style: TextStyle(color: Colors.red),
             ),
           )

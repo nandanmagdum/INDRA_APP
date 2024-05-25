@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:version1/features/fertilizer_recommedator/fertilizer_serivces.dart';
 import 'package:version1/utils/colors.dart';
 
@@ -50,7 +51,7 @@ class _RecommdatorState extends State<Recommdator> {
         backgroundColor: Colors.green,
         centerTitle: true,
         toolbarHeight: 80,
-        title: Text("Fertilizer recommendation",
+        title: Text("fertilizer_recom".tr,
             style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -90,7 +91,7 @@ class _RecommdatorState extends State<Recommdator> {
                     ),
                   ),
                   dropdownColor: Colors.blueGrey[100],
-                  hint: const Text("Soil Type"),
+                  hint: Text("soil_type".tr),
                   padding: const EdgeInsets.all(0),
                   // padding: const EdgeInsets.all(10),
                   isExpanded: true,
@@ -99,7 +100,7 @@ class _RecommdatorState extends State<Recommdator> {
                   items: cropTypes.map((String items) {
                     return DropdownMenuItem(
                       value: items,
-                      child: Text(items),
+                      child: Text("${items}".tr),
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
@@ -110,17 +111,17 @@ class _RecommdatorState extends State<Recommdator> {
               const SizedBox(height: 20),
               customTextField(
                   kcontroller: nitrogenController,
-                  hintText: "Nitrogen",
+                  hintText: "nitrogen".tr,
                   icon: const Icon(Icons.gas_meter)),
               const SizedBox(height: 20),
               customTextField(
                   kcontroller: potassiumController,
-                  hintText: "Potassium",
+                  hintText: "potassium".tr,
                   icon: const Icon(Icons.gas_meter_rounded)),
               const SizedBox(height: 20),
               customTextField(
                   kcontroller: phosphorousController,
-                  hintText: "Phosphorous",
+                  hintText: "phosphorous".tr,
                   icon: const Icon(Icons.gas_meter)),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -137,10 +138,10 @@ class _RecommdatorState extends State<Recommdator> {
                     backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12))),
-                child: const Center(
+                child: Center(
                   child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 15),
-                      child: Text("Calculate",
+                      child: Text("calculate".tr,
                           style: TextStyle(color: Colors.white, fontSize: 16))),
                 ),
               ),

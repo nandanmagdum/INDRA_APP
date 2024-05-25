@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:version1/features/auth/services/authFunctions.dart';
 import 'package:dio/dio.dart';
 import 'package:version1/features/chatbot/gemini.dart';
+import 'package:version1/features/languages/language_translators.dart';
 import 'package:version1/features/videos/videoList.dart';
 import 'package:version1/utils/api_urls.dart';
 
@@ -27,7 +29,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
     if (response.statusCode == 200) {
       print(response.data);
-      return response.data;
+      final converted = await LanguageTranslators.translateObjectRecursive(obj: response.data, sourceLanguage: "en", targetLanguage: prefs.getString("lang").toString());
+      print(converted);
+      return converted;
+      // return response.data;
     } else {
       throw Exception('Failed to load data');
     }
@@ -59,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => VideoList()));
                   },
-                  title: Text("Informational Video"),
+                  title: Text("informational_videos".tr),
                   leading: Icon(Icons.video_call_sharp),
                 ),
               ),
@@ -70,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => GEMINI()));
                   },
-                  title: Text("Chat Bot"),
+                  title: Text("chatbot".tr),
                   leading: Icon(Icons.chat),
                 ),
               ),
@@ -79,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         appBar: AppBar(
           title: Text(
-            "Profile",
+            "profile".tr,
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           actions: [
@@ -100,7 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
               } else if (snapshot.hasError) {
                 return Center(
                     child: Text(
-                  "Snapshot data error",
+                  "snapshot_error".tr,
                   style: Theme.of(context).textTheme.headlineSmall,
                 ));
               } else {
@@ -137,7 +142,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         Row(
                           children: [
-                            const Text("Phone :  ",
+                            Text("phone".tr+ " :  ",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             Text(data['phone'],
@@ -147,7 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         const SizedBox(height: 10),
                         Row(
                           children: [
-                            const Text("Street :  ",
+                            Text("street".tr + ": ",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             Text(data['street'],
@@ -157,26 +162,26 @@ class _ProfilePageState extends State<ProfilePage> {
                         const SizedBox(height: 10),
                         Row(
                           children: [
-                            const Text("Village/city:  ",
+                            Text("village".tr + ": ",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             Text(data['village_city'],
                                 style: const TextStyle(fontSize: 15))
                           ],
                         ),
-                        const SizedBox(height: 10),
-                        const Row(
-                          children: [
-                            Text("Vehicle ID :  ",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w700)),
-                            Text("155238", style: TextStyle(fontSize: 15))
-                          ],
-                        ),
+                        // const SizedBox(height: 10),
+                        // const Row(
+                        //   children: [
+                        //     Text("Vehicle ID :  ",
+                        //         style: TextStyle(
+                        //             fontSize: 18, fontWeight: FontWeight.w700)),
+                        //     Text("155238", style: TextStyle(fontSize: 15))
+                        //   ],
+                        // ),
                         const SizedBox(height: 10),
                         Row(
                           children: [
-                            const Text("Taluka: ",
+                            Text("taluka".tr + ": ",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             Text(data['taluka'],
@@ -186,7 +191,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         const SizedBox(height: 10),
                         Row(
                           children: [
-                            const Text("District :",
+                            Text("district".tr + ": ",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             Text(data['district'],
@@ -196,7 +201,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         const SizedBox(height: 10),
                         Row(
                           children: [
-                            const Text("Pincode: ",
+                            Text("zip".tr+ ": ",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             Text(data['zip'].toString(),
@@ -206,7 +211,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         const SizedBox(height: 10),
                         Row(
                           children: [
-                            const Text("State: ",
+                            Text("state".tr + ": ",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             Text(data['state'],
