@@ -21,9 +21,9 @@ class FertilizerService {
             "P": Phosphorous,
             "K": Potassium
           });
-          final converted = await LanguageTranslators.translateObjectRecursive(obj: response.data, sourceLanguage: "en", targetLanguage: prefs.getString("lang"));
-      // return response.data;
-      return converted;
+          // final converted = await LanguageTranslators.translateObjectRecursive(obj: response.data, sourceLanguage: "en", targetLanguage: prefs.getString("lang"));
+      return response.data;
+      // return converted;
     } on DioException catch (e) {
       print("Error occoured while predicting fertilizer : $e");
       throw Exception(e);

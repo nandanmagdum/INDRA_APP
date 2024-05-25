@@ -99,8 +99,8 @@ flutter:
     - assets/models/Rice/labels.txt
     - assets/models/Tomato/Tomato.tflite
     - assets/models/Tomato/labels.txt
-    - assets/models/Bringal/Bringal.tflite
-    - assets/models/Bringal/labels.txt
+    - assets/models/Brinjal/Brinjal.tflite
+    - assets/models/Brinjal/labels.txt
     - assets/models/Chili/Chili.tflite
     - assets/models/Chili/labels.txt
 

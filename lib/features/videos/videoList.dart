@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:version1/features/videos/videoScreen.dart';
-import 'package:version1/utils/api_urls.dart';
 
 class VideoList extends StatefulWidget {
   const VideoList({super.key});
@@ -13,8 +13,29 @@ class VideoList extends StatefulWidget {
 class _VideoListState extends State<VideoList> {
   Dio dio = Dio();
   Future<dynamic> fetchData() async {
-    final response = await dio.get("${base_url}video/all");
-    return response.data;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("jwt")!;
+    try {
+      final response = await dio.get(
+          "https://indra-backend-cxg7.onrender.com/video/all",
+          options: Options(headers: {"Authorization": token}));
+      print("********** ${response.data}");
+      return response.data;
+    } on DioException catch (e) {
+      if (e.response != null) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(e.toString())));
+        throw Exception("exception");
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(e.toString())));
+        throw Exception("exception");
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+      throw Exception("exception");
+    }
   }
 
   @override

@@ -182,12 +182,13 @@ class _RecommdatorState extends State<Recommdator> {
                                           .headlineSmall),
                                 ),
                                 const SizedBox(height: 20),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
+                                Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
+                                  // padding: const EdgeInsets.symmetric(
+                                  //     horizontal: 8.0),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount: snapshot
                                         .data["recommendation"]["suggestions"]
                                         .length,

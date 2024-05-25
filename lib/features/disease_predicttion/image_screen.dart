@@ -29,8 +29,6 @@ class _ImageScreenState extends State<ImageScreen> {
   String disease_name = "";
 
   applyModelOnImage(File file) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
     final modelStatus = await loadModel();
     print("*&*&*&&*&*&*&**&**&*&*&*&*&* ::: $modelStatus");
     try {
@@ -41,14 +39,11 @@ class _ImageScreenState extends State<ImageScreen> {
           imageMean: 127.5,
           imageStd: 127.5);
 
-      setState(() async{
+      setState(() async {
         results = res!;
         // print(results);
         String str = results![0]["label"];
         name = str.substring(2);
-        // convert to local
-        final Tname = await LanguageTranslators.tranlate(input: name, sourceLanguage: "en", targetLanguage: prefs.getString("lang").toString());
-        name = Tname.text;
         confidence = results != null
             ? (results![0]["confidence"] * 100.0).toString().substring(0, 5) +
                 "%"
@@ -62,18 +57,13 @@ class _ImageScreenState extends State<ImageScreen> {
     }
   }
 
-  void split_model_result() async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  void split_model_result() async {
     List temp = name.split(' ');
     crop_name = temp[0];
-    // convert
-    final Tname = await LanguageTranslators.tranlate(input: crop_name, sourceLanguage: "en", targetLanguage: prefs.getString("lang").toString());
-    crop_name = Tname.text;
+
     temp.removeAt(0);
     disease_name = temp.join(' ');
-    // convert
-    final Dname = await LanguageTranslators.tranlate(input: disease_name, sourceLanguage: "en", targetLanguage: prefs.getString("lang").toString());
-    disease_name = Dname.text;
+    setState(() {});
     print(crop_name);
     print(disease_name);
   }
@@ -100,7 +90,10 @@ class _ImageScreenState extends State<ImageScreen> {
     try {
       var resultant = await Tflite.loadModel(
           model: "assets/models/${widget.crop}/${widget.crop}.tflite",
-          labels: "assets/models/${widget.crop}/labels.txt");
+          labels: "assets/models/${widget.crop}/labels.txt"
+          // model: "assets/models/Tomato/Tomato.tflite",
+          // labels: "assets/models/Tomato/labels.txt"
+          );
       print(resultant);
       return resultant;
     } catch (e) {
@@ -180,7 +173,8 @@ class _ImageScreenState extends State<ImageScreen> {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.08),
                 Text("crop_details".tr,
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 30, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                 Container(
@@ -193,8 +187,8 @@ class _ImageScreenState extends State<ImageScreen> {
                   ),
                   child: image == null
                       ? Center(
-                          child:
-                              Text("unknown".tr, style: TextStyle(fontSize: 17)))
+                          child: Text("unknown".tr,
+                              style: TextStyle(fontSize: 17)))
                       : Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

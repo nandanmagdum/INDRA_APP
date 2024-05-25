@@ -6,6 +6,7 @@ class LocalString extends Translations {
         // English Language
         'en_US': {
           // main app
+          "language": "language",
           "indra": "Indra",
           "airavat": "Airavat",
           'title': "Team INDRA App",
@@ -166,7 +167,7 @@ class LocalString extends Translations {
           "enter_details": "Enter User Details",
           "username": "Name",
 
-          // 
+          //
           "something_wrong": "Something went wrong",
 
           // fertilizer recommmend
@@ -176,7 +177,7 @@ class LocalString extends Translations {
           // fertilizer crop types
           "Jawar(Sorghum)": "Jawar(Sorghum)",
           "Barley(JAV)": "Barley(JAV)",
-          
+
           "nitrogen": "Nitrogen",
           "potassium": "Potassium",
           "phosphorous": "Phosphorous",
@@ -190,6 +191,7 @@ class LocalString extends Translations {
         // Hindi Language
         'hi_IN': {
           // main app
+          "language": "भाषा",
           "indra": "इंद्र",
           "airavat": "ऐरावत",
           'title': "टीम इंद्र ऐप",
@@ -366,11 +368,11 @@ class LocalString extends Translations {
 
           "profile": "प्रोफ़ाइल",
           "snapshot_error": "स्नैपशॉट डेटा त्रुटि",
-
         },
         // Marathi Language
         'mar_IN': {
           // main app
+          "language": "भाषा",
           "indra": "इंद्र",
           "airavat": "ऐरावत",
           'title': "टीम इंद्र ऐप",
@@ -547,7 +549,6 @@ class LocalString extends Translations {
           "phosphorous": "फ़ास्फ़रोस",
           "calculate": "गणना करा",
 
-          
           "profile": "प्रोफ़ाइल",
           "snapshot_error": "स्नैपशॉट डेटा त्रुटि",
         },

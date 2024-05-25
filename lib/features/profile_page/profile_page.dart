@@ -6,8 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:version1/features/auth/services/authFunctions.dart';
 import 'package:dio/dio.dart';
 import 'package:version1/features/chatbot/gemini.dart';
+import 'package:version1/features/languages/change_language.dart';
 import 'package:version1/features/languages/language_translators.dart';
 import 'package:version1/features/videos/videoList.dart';
+import 'package:version1/features/weather/whether_forecast.dart';
 import 'package:version1/utils/api_urls.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -29,7 +31,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
     if (response.statusCode == 200) {
       print(response.data);
-      final converted = await LanguageTranslators.translateObjectRecursive(obj: response.data, sourceLanguage: "en", targetLanguage: prefs.getString("lang").toString());
+      final converted = await LanguageTranslators.translateObjectRecursive(
+          obj: response.data,
+          sourceLanguage: "en",
+          targetLanguage: prefs.getString("lang").toString());
       print(converted);
       return converted;
       // return response.data;
@@ -77,6 +82,28 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                   title: Text("chatbot".tr),
                   leading: Icon(Icons.chat),
+                ),
+              ),
+              Card(
+                shadowColor: Colors.green,
+                child: ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ChangeLanguage()));
+                  },
+                  title: Text("language".tr),
+                  leading: Icon(Icons.chat),
+                ),
+              ),
+              Card(
+                shadowColor: Colors.green,
+                child: ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => WheatherForecast()));
+                  },
+                  title: Text("Weather".tr),
+                  leading: Icon(Icons.sunny),
                 ),
               ),
             ],
@@ -142,7 +169,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         Row(
                           children: [
-                            Text("phone".tr+ " :  ",
+                            Text("phone".tr + " :  ",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             Text(data['phone'],
@@ -201,7 +228,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         const SizedBox(height: 10),
                         Row(
                           children: [
-                            Text("zip".tr+ ": ",
+                            Text("zip".tr + ": ",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             Text(data['zip'].toString(),
